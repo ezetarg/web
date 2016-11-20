@@ -2,9 +2,9 @@ package ar.edu.unju.fi.soo.controller;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
 import ar.edu.unju.fi.soo.model.User;
@@ -18,7 +18,8 @@ public class LoginBean {
 	private String nombreUsuario;
 	private String password;
 	private final String FORWARD_DASHBOARD = "escritorio.xhtml?faces-redirect=true";
-	@Inject
+
+	@ManagedProperty("#{securityServiceImpl}")
 	private SecurityService securityService;
 
 	/**
@@ -39,7 +40,7 @@ public class LoginBean {
 
 		User user = securityService.login(nombreUsuario, password);
 
-		if (user != null) {
+		if (user == null) {
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error", "El usuario y/o clave no son correctos."));
 
@@ -75,6 +76,14 @@ public class LoginBean {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public SecurityService getSecurityService() {
+		return securityService;
+	}
+
+	public void setSecurityService(SecurityService securityService) {
+		this.securityService = securityService;
 	}
 
 }
