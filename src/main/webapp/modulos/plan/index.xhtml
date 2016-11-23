@@ -36,48 +36,48 @@
 							action="#{planSearch.buscar()}" update="planResults" />
 					</h:panelGrid>
 				</p:panel>
-				<h:commandLink action="plan_new" value="Crear plan" immediate="true" />
-
+				
 				<p:panel id="planResults">
 					<p:panel rendered="#{empty planSearch.plans}">
 						No se encontraron resultados
 					</p:panel>
-					<h:dataTable rendered="#{not empty planSearch.plans}"
+					<p:dataTable rendered="#{not empty planSearch.plans}"
 						value="#{planSearch.plans}" var="plan" styleClass="order-table"
 						headerClass="order-table-header"
 						rowClasses="order-table-odd-row,order-table-even-row">
 
-						<h:column>
+						<p:column>
 							<!-- column header -->
 							<f:facet name="header">ID</f:facet>
 							<!-- row record -->
 							<h:outputText value="#{plan.id}"></h:outputText>
-						</h:column>
+						</p:column>
 
-						<h:column>
+						<p:column>
 							<f:facet name="header">Cliente</f:facet>
 							<h:outputText value="#{plan.client.name}"></h:outputText>
-						</h:column>
+						</p:column>
 
-						<h:column>
+						<p:column>
 							<f:facet name="header">Vehiculo</f:facet>
 							<h:outputText value="#{plan.vehicle.brand}"></h:outputText>
 							<h:outputText value="#{plan.vehicle.model}"></h:outputText>
-						</h:column>
+						</p:column>
 
-						<h:column>
+						<p:column>
 							<f:facet name="header">Accion</f:facet>
 							<h:column>
-								<p:commandButton icon="ui-icon-edit" title="Cuotas"
+								<p:commandButton icon="ui-icon-pencil" title="Cuotas"
 									action="plan_detail" immediate="true">
 									<f:param name="id" value="#{plan.id}" />
 								</p:commandButton>
 							</h:column>
-						</h:column>
+						</p:column>
 
-					</h:dataTable>
+					</p:dataTable>
 				</p:panel>
 			</h:form>
+			<p:commandButton action="plan_new" value="Crear plan" immediate="true" />
 		</ui:define>
 
 	</ui:composition>
