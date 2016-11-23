@@ -29,9 +29,6 @@ public class LoginBean {
 	 * @throws Exception
 	 */
 	public String ingresar() throws Exception {
-		System.out.println("nombreUsuario = " + nombreUsuario);
-		System.out.println("password = " + password);
-
 		if (nombreUsuario.isEmpty() || password.isEmpty()) {
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error", "Debe ingresar usuario y clave."));
