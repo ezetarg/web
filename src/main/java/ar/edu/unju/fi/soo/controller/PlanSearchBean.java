@@ -9,7 +9,7 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 
 import ar.edu.unju.fi.soo.model.Plan;
-import ar.edu.unju.fi.soo.model.dao.PlanDAO;
+import ar.edu.unju.fi.soo.services.AgencyService;
 
 @ManagedBean(name = "planSearch")
 @ViewScoped
@@ -19,12 +19,14 @@ public class PlanSearchBean implements Serializable {
 
 	private List<Plan> plans;
 
-	@ManagedProperty("#{planDAOImpl}")
-	private PlanDAO planDAO;
+	@ManagedProperty("#{agencyServiceImpl}")
+	private AgencyService agencyService;
+
+	private String clientName;
 
 	@PostConstruct
 	public void init() {
-		plans = planDAO.list();
+		plans = agencyService.findPlanByClientName(clientName);
 	}
 
 	public String buscar() {
@@ -39,11 +41,20 @@ public class PlanSearchBean implements Serializable {
 		this.plans = plans;
 	}
 
-	public PlanDAO getPlanDAO() {
-		return planDAO;
+	public AgencyService getAgencyService() {
+		return agencyService;
 	}
 
-	public void setPlanDAO(PlanDAO planDAO) {
-		this.planDAO = planDAO;
+	public void setAgencyService(AgencyService agencyService) {
+		this.agencyService = agencyService;
 	}
+
+	public String getClientName() {
+		return clientName;
+	}
+
+	public void setClientName(String clientName) {
+		this.clientName = clientName;
+	}
+
 }

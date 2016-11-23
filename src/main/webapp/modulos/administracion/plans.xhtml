@@ -24,23 +24,24 @@
 
 				<h:column>
 					<!-- column header -->
-					<f:facet name="header">Sample</f:facet>
+					<f:facet name="header">ID</f:facet>
 					<!-- row record -->
 					<h:outputText value="#{plan.id}"></h:outputText>
 				</h:column>
 
 				<h:column>
-					<f:facet name="header">Sample</f:facet>
-					<h:outputText value="#{plan.id}"></h:outputText>
+					<f:facet name="header">Cliente</f:facet>
+					<h:outputText value="#{plan.client.name}"></h:outputText>
 				</h:column>
 
 				<h:column>
-					<f:facet name="header">Sample</f:facet>
-					<h:outputText value="#{plan.id}"></h:outputText>
+					<f:facet name="header">Vehiculo</f:facet>
+					<h:outputText value="#{plan.vehicle.brand}"></h:outputText>
+					<h:outputText value="#{plan.vehicle.model}"></h:outputText>
 				</h:column>
 
 				<h:column>
-					<f:facet name="header">Sample</f:facet>
+					<f:facet name="header">Accion</f:facet>
 					<h:outputText value="#{plan.id}"></h:outputText>
 				</h:column>
 
