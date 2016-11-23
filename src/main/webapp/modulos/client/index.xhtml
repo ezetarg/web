@@ -19,40 +19,43 @@
 			<p:outputLabel value="#{aplicacion_bienvenido}" />
 
 			<h:form>
-				<h:dataTable value="#{clientList.list}" var="client"
+				<p:dataTable value="#{clientList.list}" var="client"
 					styleClass="order-table" headerClass="order-table-header"
 					rowClasses="order-table-odd-row,order-table-even-row">
 
-					<h:column>
+					<p:column>
 						<!-- column header -->
 						<f:facet name="header">ID</f:facet>
 						<!-- row record -->
 						<h:outputText value="#{client.id}"></h:outputText>
-					</h:column>
+					</p:column>
 
-					<h:column>
+					<p:column>
 						<f:facet name="header">Nombre</f:facet>
 						<h:outputText value="#{client.name}"></h:outputText>
-					</h:column>
+					</p:column>
 
-					<h:column>
+					<p:column>
 						<f:facet name="header">DNI</f:facet>
 						<h:outputText value="#{client.dni}"></h:outputText>
-					</h:column>
+					</p:column>
 
-					<h:column>
+					<p:column>
 						<f:facet name="header">Dirección</f:facet>
 						<h:outputText value="#{client.address}"></h:outputText>
-					</h:column>
+					</p:column>
 
-					<h:column>
-						<p:commandButton icon="ui-icon-trash" title="Editar" action="client_edit" immediate="true">
+					<p:column>
+						<p:commandButton icon="ui-icon-pencil" title="Editar" action="client_edit" immediate="true">
 							<f:param name="id" value="#{client.id}" />
 						</p:commandButton>
 						<p:commandButton icon="ui-icon-trash" title="Borrar"
 							actionListener="#{clientList.remove(client)}" ajax="false" />
-					</h:column>
-				</h:dataTable>
+					</p:column>
+				</p:dataTable>
+				<p:separator></p:separator>
+				<p:commandButton action="client_edit" value="Crear cliente"
+					immediate="true" />
 			</h:form>
 		</ui:define>
 

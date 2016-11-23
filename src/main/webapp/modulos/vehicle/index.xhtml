@@ -19,43 +19,45 @@
 			<p:outputLabel value="#{aplicacion_bienvenido}" />
 
 			<h:form>
-				<h:commandLink action="vehicle_edit" value="Crear vehiculo"
-					immediate="true" />
+				
 				<p:panel rendered="#{empty vehicleList.list}">No se encontraron resultados</p:panel>
-				<h:dataTable rendered="#{not empty vehicleList.list}"
+				<p:dataTable rendered="#{not empty vehicleList.list}"
 					value="#{vehicleList.list}" var="vehicle" styleClass="order-table"
 					headerClass="order-table-header"
 					rowClasses="order-table-odd-row,order-table-even-row">
 
-					<h:column>
+					<p:column>
 						<!-- column header -->
 						<f:facet name="header">ID</f:facet>
 						<!-- row record -->
 						<h:outputText value="#{vehicle.id}"></h:outputText>
-					</h:column>
+					</p:column>
 
-					<h:column>
+					<p:column>
 						<f:facet name="header">Marca</f:facet>
 						<h:outputText value="#{vehicle.brand}"></h:outputText>
-					</h:column>
+					</p:column>
 
-					<h:column>
+					<p:column>
 						<f:facet name="header">Modelo</f:facet>
 						<h:outputText value="#{vehicle.model}"></h:outputText>
-					</h:column>
+					</p:column>
 
-					<h:column>
+					<p:column>
 						<f:facet name="header">Precio</f:facet>
 						<h:outputText value="#{vehicle.value}"></h:outputText>
-					</h:column>
+					</p:column>
 
-					<h:column>
-						<p:commandButton icon="ui-icon-edit" title="Editar"
+					<p:column>
+						<p:commandButton icon="ui-icon-pencil" title="Editar"
 							action="vehicle_edit" immediate="true">
 							<f:param name="id" value="#{vehicle.id}" />
 						</p:commandButton>
-					</h:column>
-				</h:dataTable>
+					</p:column>
+				</p:dataTable>
+				<p:separator></p:separator>
+				<p:commandButton action="vehicle_edit" value="Crear vehiculo"
+					immediate="true" />
 			</h:form>
 		</ui:define>
 

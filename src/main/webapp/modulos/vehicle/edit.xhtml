@@ -23,26 +23,31 @@
 
 			<h:form>
 				<h:panelGrid columns="2">
+					
 					<h:outputText value="VehicleId:" />
 					<h:outputText id="vehicleId" value="#{vehicleEdit.vehicle.id}"
 						title="VehicleId" />
-
+				    
 					<h:outputText value="Marca:" />
-					<h:inputText id="vehicleName" value="#{vehicleEdit.vehicle.brand}"
-						title="Marca" />
+					
+					<p:inputText id="vehicleName" value="#{vehicleEdit.vehicle.brand}"
+						title="gola"></p:inputText>
 
 					<h:outputText value="Modelo:" />
-					<h:inputText id="vehicleAddress"
+					<p:inputText id="vehicleAddress"
 						value="#{vehicleEdit.vehicle.model}" title="Modelo" />
 
 					<h:outputText value="Precio:" />
-					<h:inputText id="vehiclePrice" value="#{vehicleEdit.vehicle.value}"
+					<p:inputText id="vehiclePrice" value="#{vehicleEdit.vehicle.value}"
 						title="Precio" />
 				</h:panelGrid>
-				<br />
-				<h:commandLink action="#{vehicleEdit.save}" value="Guardar" />
-				<br />
-				<h:commandLink value="Index" action="welcome" immediate="true" />
+				  <h:panelGrid columns="4" cellpadding="5">
+        			<p:commandButton action="#{vehicleEdit.save}" value="Guardar"
+					immediate="true" />
+     				<p:commandButton value="Volver" action="welcome" inmediate="true"
+					immediate="true" />
+   				 </h:panelGrid>
+			
 			</h:form>
 		</ui:define>
 
