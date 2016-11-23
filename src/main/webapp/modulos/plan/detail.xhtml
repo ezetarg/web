@@ -1,0 +1,88 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title><p:outputLabel value="#{msg.aplicacion_titulo}" /></title>
+</h:head>
+<h:body>
+
+	<ui:composition template="/templates/template.xhtml">
+		<ui:define name="windowTitle">
+			<p:outputLabel value="#{msg.aplicacion_titulo}" />
+		</ui:define>
+
+		<ui:define name="content">
+			<f:metadata>
+				<f:viewParam name="id" value="#{planDetail.id}" />
+			</f:metadata>
+
+			<p:outputLabel value="#{aplicacion_bienvenido}" />
+
+			<h:form>
+				<p:panel id="basic" header="Nuevo plan" style="margin-bottom:20px">
+					<p:growl id="growl" showDetail="true" sticky="true" life="800" />
+					<h:panelGrid columns="4" cellpadding="10">
+						<h:outputLabel value="Cliente" />
+						<h:outputText value="#{planDetail.plan.client.name}" />
+
+						<h:outputLabel value="Vehículo" />
+						<h:outputText
+							value="#{planDetail.plan.vehicle.brand} #{planDetail.plan.vehicle.model}" />
+
+						<h:outputLabel value="Tipo de plan" />
+						<h:outputText value="#{planDetail.plan}" />
+					</h:panelGrid>
+
+					<h:dataTable rendered="#{not empty planDetail.plan.fees}"
+						value="#{planDetail.plan.fees}" var="fee" styleClass="order-table"
+						headerClass="order-table-header"
+						rowClasses="order-table-odd-row,order-table-even-row">
+
+						<h:column>
+							<!-- column header -->
+							<f:facet name="header">Numero</f:facet>
+							<!-- row record -->
+							<h:outputText value="#{fee.number}"></h:outputText>
+						</h:column>
+
+						<h:column>
+							<!-- column header -->
+							<f:facet name="header">Fecha de vencimiento</f:facet>
+							<!-- row record -->
+							<h:outputText value="#{fee.dueDate}"></h:outputText>
+						</h:column>
+
+						<h:column>
+							<!-- column header -->
+							<f:facet name="header">Fecha de pago</f:facet>
+							<!-- row record -->
+							<h:outputText value="#{fee.paymentDate}"></h:outputText>
+						</h:column>
+
+						<h:column>
+							<!-- column header -->
+							<f:facet name="header">Importe</f:facet>
+							<!-- row record -->
+							<h:outputText value="#{fee.amount}"></h:outputText>
+						</h:column>
+
+						<h:column>
+							<!-- column header -->
+							<f:facet name="header">Importe</f:facet>
+							<!-- row record -->
+							<h:outputText value="#{fee.paymentDate ? 'Pagada' : 'Adeudada'}"></h:outputText>
+						</h:column>
+
+					</h:dataTable>
+					<p:commandButton id="cancel" value="Volver" action="plan_index" immediate="true" />
+				</p:panel>
+			</h:form>
+		</ui:define>
+
+	</ui:composition>
+
+</h:body>
+</html>

@@ -57,6 +57,12 @@
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>plan_detail</from-outcome>
+			<to-view-id>/modulos/plan/detail.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
 	<!-- VEHICLE -->
 	<navigation-rule>
 		<navigation-case>
