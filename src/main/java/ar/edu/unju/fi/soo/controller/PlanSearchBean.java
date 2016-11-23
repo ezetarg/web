@@ -22,14 +22,17 @@ public class PlanSearchBean implements Serializable {
 	@ManagedProperty("#{agencyServiceImpl}")
 	private AgencyService agencyService;
 
-	private String clientName;
+	private String planType;
+	private String clientField;
 
 	@PostConstruct
 	public void init() {
-		plans = agencyService.findPlanByClientName(clientName);
+		plans = agencyService.findPlanByClientName(clientField);
 	}
 
 	public String buscar() {
+		System.out.println("buscar!!!");
+		plans = agencyService.findPlanByClientName(clientField);
 		return null;
 	}
 
@@ -49,12 +52,20 @@ public class PlanSearchBean implements Serializable {
 		this.agencyService = agencyService;
 	}
 
-	public String getClientName() {
-		return clientName;
+	public String getPlanType() {
+		return planType;
 	}
 
-	public void setClientName(String clientName) {
-		this.clientName = clientName;
+	public void setPlanType(String planType) {
+		this.planType = planType;
+	}
+
+	public String getClientField() {
+		return clientField;
+	}
+
+	public void setClientField(String clientField) {
+		this.clientField = clientField;
 	}
 
 }
