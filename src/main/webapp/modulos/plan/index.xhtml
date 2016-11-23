@@ -36,7 +36,7 @@
 							action="#{planSearch.buscar()}" update="planResults" />
 					</h:panelGrid>
 				</p:panel>
-				
+
 				<p:panel id="planResults">
 					<p:panel rendered="#{empty planSearch.plans}">
 						No se encontraron resultados
@@ -76,8 +76,10 @@
 
 					</p:dataTable>
 				</p:panel>
+				<br />
+				<p:commandButton action="plan_new" value="Crear plan"
+					immediate="true" />
 			</h:form>
-			<p:commandButton action="plan_new" value="Crear plan" immediate="true" />
 		</ui:define>
 
 	</ui:composition>

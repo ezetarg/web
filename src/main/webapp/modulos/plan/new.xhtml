@@ -21,15 +21,18 @@
 			<h:form>
 				<p:panel id="basic" header="Nuevo plan" style="margin-bottom:20px">
 					<p:growl id="growl" showDetail="true" sticky="true" life="800" />
+
 					<h:panelGrid columns="2" cellpadding="10">
 						<h:outputLabel value="Cliente" />
-						<h:selectOneMenu value="#{planEdit.client}">
-							<f:selectItems value="#{planEdit.clients}" var="c" itemLabel="#{c.name}" itemValue="#{c.id}"/>
+						<h:selectOneMenu value="#{planEdit.clientId}">
+							<f:selectItems value="#{planEdit.clients}" var="c"
+								itemLabel="#{c.name}" itemValue="#{c.id}" />
 						</h:selectOneMenu>
 
 						<h:outputLabel value="Vehículo" />
-						<h:selectOneMenu value="#{planEdit.vehicle}">
-							<f:selectItems value="#{planEdit.vehicles}" />
+						<h:selectOneMenu value="#{planEdit.vehicleId}">
+							<f:selectItems value="#{planEdit.vehicles}" var="v"
+							     itemLabel="#{v.brand} #{v.model}" itemValue="#{v.id}"/>
 						</h:selectOneMenu>
 
 						<h:outputLabel value="Tipo de plan" />
@@ -38,8 +41,12 @@
 							<f:selectItem itemValue="plan7030" itemLabel="Plan 70/30" />
 						</h:selectOneMenu>
 
-						<p:commandButton id="submit" value="Guardar" action="plan_index" />
-						<p:commandButton id="cancel" value="Cancelar" action="plan_index" immediate="true"/>
+						<h:outputLabel value="Cantidad de cuotas" />
+						<h:inputText value="#{planEdit.feesQuantity}"/>
+
+						<p:commandButton id="submit" value="Guardar" action="#{planEdit.save()}" />
+						<p:commandButton id="cancel" value="Cancelar" action="plan_index"
+							immediate="true" />
 					</h:panelGrid>
 				</p:panel>
 			</h:form>

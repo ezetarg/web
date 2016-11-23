@@ -24,7 +24,7 @@
 			<h:form>
 				<p:panel id="basic" header="Nuevo plan" style="margin-bottom:20px">
 					<p:growl id="growl" showDetail="true" sticky="true" life="800" />
-					<h:panelGrid columns="4" cellpadding="10">
+					<h:panelGrid columns="6" cellpadding="10">
 						<h:outputLabel value="Cliente" />
 						<h:outputText value="#{planDetail.plan.client.name}" />
 
@@ -32,8 +32,18 @@
 						<h:outputText
 							value="#{planDetail.plan.vehicle.brand} #{planDetail.plan.vehicle.model}" />
 
+						<h:outputLabel value="Precio" />
+						<h:outputText value="#{planDetail.plan.vehicle.value}">
+							<f:convertNumber type="currency" currencySymbol="$" />
+						</h:outputText>
+
 						<h:outputLabel value="Tipo de plan" />
-						<h:outputText value="#{planDetail.plan}" />
+						<h:outputText value="#{planDetail.plan.createDate}">
+							<f:convertDateTime type="date" pattern="dd/MM/yyyy" />
+						</h:outputText>
+
+						<h:outputLabel value="Tipo de plan" />
+						<h:outputText value="#{planDetail.planType}" />
 					</h:panelGrid>
 
 					<h:dataTable rendered="#{not empty planDetail.plan.fees}"
@@ -77,7 +87,8 @@
 						</h:column>
 
 					</h:dataTable>
-					<p:commandButton id="cancel" value="Volver" action="plan_index" immediate="true" />
+					<p:commandButton id="cancel" value="Volver" action="plan_index"
+						immediate="true" />
 				</p:panel>
 			</h:form>
 		</ui:define>

@@ -27,7 +27,7 @@ public class PlanSearchBean implements Serializable {
 
 	@PostConstruct
 	public void init() {
-		plans = agencyService.findPlanByClientName(clientField);
+		plans = agencyService.findPlanByClientDNI(planType, clientField);
 	}
 	
 	public String buscar() {
