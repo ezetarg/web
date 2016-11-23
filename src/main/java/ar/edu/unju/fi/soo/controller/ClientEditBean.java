@@ -1,9 +1,12 @@
 package ar.edu.unju.fi.soo.controller;
 
 import java.io.Serializable;
+import java.util.Map;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.context.FacesContext;
 
 import ar.edu.unju.fi.soo.model.Client;
 import ar.edu.unju.fi.soo.services.AgencyService;
@@ -16,7 +19,25 @@ public class ClientEditBean implements Serializable {
 	@ManagedProperty("#{agencyServiceImpl}")
 	private AgencyService agencyService;
 
-	private Client client = new Client();
+	@ManagedProperty("#{param['id']}")
+	private Long id;
+
+	private Client client;
+
+	@PostConstruct
+	public void init() {
+		System.out.println("----------------------------------------------------");
+		Map<String, String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+		String paramId = params.get("id");
+		System.out.println("paramId " + paramId);
+		System.out.println("id " + id);
+		System.out.println("----------------------------------------------------");
+		if (id != null) {
+			client = agencyService.getClientById(id);
+		} else {
+			client = new Client();
+		}
+	}
 
 	public String save() {
 		try {
@@ -44,6 +65,14 @@ public class ClientEditBean implements Serializable {
 
 	public void setClient(Client client) {
 		this.client = client;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 }

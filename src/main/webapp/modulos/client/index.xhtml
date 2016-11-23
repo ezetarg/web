@@ -46,7 +46,10 @@
 					</h:column>
 
 					<h:column>
-						<p:commandButton icon="ui-icon-trash" title="Delete this actor"
+						<p:commandButton icon="ui-icon-trash" title="Editar" action="client_edit" immediate="true">
+							<f:param name="id" value="#{client.id}" />
+						</p:commandButton>
+						<p:commandButton icon="ui-icon-trash" title="Borrar"
 							actionListener="#{clientList.remove(client)}" ajax="false" />
 					</h:column>
 				</h:dataTable>

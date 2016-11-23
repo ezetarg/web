@@ -24,9 +24,14 @@ public class ClientListBean implements Serializable {
 	public void init() {
 		list = agencyService.listClients();
 	}
+	
+	public void edit(Long id) {
+		System.out.println("id = " + id);
+	}
 
 	public void remove(Client client) {
 		// call to delete method in the service
+		agencyService.deleteClient(client);
 		// and reload the list.
 		list = agencyService.listClients();
 	}

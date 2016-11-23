@@ -28,13 +28,20 @@
 		</navigation-case>
 	</navigation-rule>
 	<!-- CLIENT -->
-	<navigation-rule>
-		<navigation-case>
-			<from-outcome>client_index</from-outcome>
-			<to-view-id>/modulos/client/index.xhtml</to-view-id>
-			<redirect/>
-		</navigation-case>
-	</navigation-rule>
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>client_index</from-outcome>
+            <to-view-id>/modulos/client/index.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>client_edit</from-outcome>
+            <to-view-id>/modulos/client/edit.xhtml</to-view-id>
+            <redirect include-view-params="true"/>
+        </navigation-case>
+    </navigation-rule>
 	<!-- PLAN -->
 	<navigation-rule>
 		<navigation-case>
