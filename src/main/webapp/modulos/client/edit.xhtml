@@ -1,0 +1,51 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title><p:outputLabel value="#{msg.aplicacion_titulo}" /></title>
+</h:head>
+<h:body>
+
+	<ui:composition template="/templates/template.xhtml">
+		<ui:define name="windowTitle">
+			<p:outputLabel value="#{msg.aplicacion_titulo}" />
+		</ui:define>
+
+		<ui:define name="content">
+
+			<p:outputLabel value="#{aplicacion_bienvenido}" />
+
+			<h:form>
+				<h:panelGrid columns="2">
+					<h:outputText value="ClientId:" />
+					<h:outputText id="clientId" value="#{clientEdit.client.id}"
+						title="ClientId" />
+
+
+					<h:outputText value="Nombre:" />
+					<h:inputText id="clientName" value="#{clientEdit.client.name}"
+						title="Nombre" />
+
+
+					<h:outputText value="Dirección:" />
+					<h:inputText id="clientAddress"
+						value="#{clientEdit.client.address}" title="Dirección" />
+				</h:panelGrid>
+				<br />
+				<h:commandLink action="#{clientEdit.save}" value="Create" />
+				<br />
+				<br />
+				<h:commandLink action="#{client.listSetup}"
+					value="Volver al listado" immediate="true" />
+				<br />
+				<h:commandLink value="Index" action="welcome" immediate="true" />
+			</h:form>
+		</ui:define>
+
+	</ui:composition>
+
+</h:body>
+</html>
