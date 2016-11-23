@@ -29,11 +29,11 @@ public class PlanSearchBean implements Serializable {
 	public void init() {
 		plans = agencyService.findPlanByClientName(clientField);
 	}
-
-	public String buscar() {
-		System.out.println("buscar!!!");
-		plans = agencyService.findPlanByClientName(clientField);
-		return null;
+	
+	public List<Plan> buscar() {
+		plans = agencyService.findPlanByClientDNI(planType, clientField);
+		System.out.println(plans);
+		return plans;
 	}
 
 	public List<Plan> getPlans() {
