@@ -19,17 +19,31 @@
 		</resource-bundle>
 	</application>
 
-
 	<navigation-rule>
 		<navigation-case>
 			<from-outcome>welcome</from-outcome>
 			<to-view-id>/index.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
+	<!-- CLIENT -->
 	<navigation-rule>
 		<navigation-case>
 			<from-outcome>client_index</from-outcome>
 			<to-view-id>/modulos/client/index.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<!-- PLAN -->
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>plan_index</from-outcome>
+			<to-view-id>/modulos/plan/index.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<!-- VEHICLE -->
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>vehicle_index</from-outcome>
+			<to-view-id>/modulos/vehicle/index.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 </faces-config>
