@@ -20,8 +20,8 @@
 			</f:metadata>
 
 			<p:outputLabel value="#{aplicacion_bienvenido}" />
-
 			<h:form>
+				<h:inputHidden id="id" value="#{clientEdit.client.id}"></h:inputHidden>
 				<h:panelGrid columns="2">
 					<h:outputText value="ClientId:" />
 					<h:outputText id="clientId" value="#{clientEdit.client.id}"
@@ -31,17 +31,20 @@
 					<h:outputText value="Nombre:" />
 					<h:inputText id="clientName" value="#{clientEdit.client.name}"
 						title="Nombre" />
-
-
+					
+					<h:outputText value="DNI" />
+					<h:inputText id="clientDni"
+						value="#{clientEdit.client.dni}" title="Dni" />
+	
 					<h:outputText value="Dirección:" />
 					<h:inputText id="clientAddress"
 						value="#{clientEdit.client.address}" title="Dirección" />
 				</h:panelGrid>
 				<br />
-				<h:commandLink action="#{clientEdit.save}" value="Create" />
+				<h:commandLink action="#{clientEdit.save}" value="Guardar" />
 				<br />
 				<br />
-				<h:commandLink action="#{client.listSetup}"
+				<h:commandLink action="client_index"
 					value="Volver al listado" immediate="true" />
 				<br />
 				<h:commandLink value="Index" action="welcome" immediate="true" />
