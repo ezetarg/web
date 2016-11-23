@@ -27,9 +27,9 @@
 					<p:growl id="messages" showDetail="true" />
 
 					<p:menubar>
-						<p:menuitem value="Planes" action="plan_index" update="messages" icon="ui-icon-search" />
-						<p:menuitem value="Clientes" action="client_index" update="messages" icon="ui-icon-search" />
-						<p:menuitem value="Vehiculos" action="vehicle_index" update="messages" icon="ui-icon-search" />
+						<p:menuitem value="Planes" action="/modulos/plan/index.xhtml" update="messages" icon="ui-icon-search" />
+						<p:menuitem value="Clientes" action="/modulos/client/index.xhtml" update="messages" icon="ui-icon-search" />
+						<p:menuitem value="Vehiculos" action="/modulos/vehicle/index.xhtml" update="messages" icon="ui-icon-search" />
 						<p:menuitem value="#{msg.menu_salir}"
 							actionListener="#{loginBean.closeSession}" ajax="false"
 							url="/faces/index.xhtml?faces-redirect=true" icon="ui-icon-close"

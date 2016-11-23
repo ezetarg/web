@@ -35,12 +35,13 @@
 							action="#{planSearch.buscar()}" update="planResults" />
 					</h:panelGrid>
 				</p:panel>
+				<h:commandLink action="plan_new" value="Crear plan" immediate="true"/>
 
-				<p:panel rendered="#{empty planSearch.plans}">
-					No se encontraron resultados
-				</p:panel>
-				<p:panel rendered="#{not empty planSearch.plans}">
-					<h:dataTable id="planResults" value="#{planSearch.plans}"
+				<p:panel id="planResults">
+					<p:panel rendered="#{empty planSearch.plans}">
+						No se encontraron resultados
+					</p:panel>
+					<h:dataTable rendered="#{not empty planSearch.plans}" value="#{planSearch.plans}"
 						var="plan" styleClass="order-table"
 						headerClass="order-table-header"
 						rowClasses="order-table-odd-row,order-table-even-row">
