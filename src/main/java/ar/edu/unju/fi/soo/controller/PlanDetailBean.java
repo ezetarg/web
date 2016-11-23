@@ -1,15 +1,14 @@
 package ar.edu.unju.fi.soo.controller;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 
-import ar.edu.unju.fi.soo.model.Client;
-import ar.edu.unju.fi.soo.model.Fee;
-import ar.edu.unju.fi.soo.model.Vehicle;
+import ar.edu.unju.fi.soo.model.Plan;
+import ar.edu.unju.fi.soo.model.Plan7030;
+import ar.edu.unju.fi.soo.model.PlanRegular;
 import ar.edu.unju.fi.soo.services.AgencyService;
 
 @ManagedBean(name = "planDetail")
@@ -20,13 +19,22 @@ public class PlanDetailBean implements Serializable {
 	@ManagedProperty("#{agencyServiceImpl}")
 	private AgencyService agencyService;
 
-	private Vehicle vehicle;
-	private Client client;
-	private List<Fee> fees;
-	private int feesQuantity;
+	@ManagedProperty("#{param['id']}")
+	private Long id;
+
+	private Plan plan;
+	private int unpaidFees;
+	private int paidFees;
+	private String planType;
 
 	@PostConstruct
 	public void init() {
+		System.out.println("----------------------------------------------------");
+		System.out.println("id " + id);
+		System.out.println("----------------------------------------------------");
+		if (id != null) {
+			plan = agencyService.getPlanById(id);
+		}
 	}
 
 	public AgencyService getAgencyService() {
@@ -37,36 +45,45 @@ public class PlanDetailBean implements Serializable {
 		this.agencyService = agencyService;
 	}
 
-	public Vehicle getVehicle() {
-		return vehicle;
+	public Long getId() {
+		return id;
 	}
 
-	public void setVehicle(Vehicle vehicle) {
-		this.vehicle = vehicle;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
-	public Client getClient() {
-		return client;
+	public Plan getPlan() {
+		return plan;
 	}
 
-	public void setClient(Client client) {
-		this.client = client;
+	public void setPlan(Plan plan) {
+		this.plan = plan;
 	}
 
-	public List<Fee> getFees() {
-		return fees;
+	public int getUnpaidFees() {
+		return unpaidFees;
 	}
 
-	public void setFees(List<Fee> fees) {
-		this.fees = fees;
+	public void setUnpaidFees(int unpaidFees) {
+		this.unpaidFees = unpaidFees;
 	}
 
-	public int getFeesQuantity() {
-		return feesQuantity;
+	public int getPaidFees() {
+		return paidFees;
 	}
 
-	public void setFeesQuantity(int feesQuantity) {
-		this.feesQuantity = feesQuantity;
+	public void setPaidFees(int paidFees) {
+		this.paidFees = paidFees;
+	}
+
+	public String getPlanType() {
+		planType = plan instanceof PlanRegular ? "Plan Regular" : plan instanceof Plan7030 ? "Plan 70/30" : "-";
+		return planType;
+	}
+
+	public void setPlanType(String planType) {
+		this.planType = planType;
 	}
 
 }

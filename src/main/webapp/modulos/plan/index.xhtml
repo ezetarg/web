@@ -19,7 +19,8 @@
 			<p:outputLabel value="#{aplicacion_bienvenido}" />
 
 			<h:form>
-				<p:panel id="basic" header="Búsqueda de un plan" style="margin-bottom:20px">
+				<p:panel id="basic" header="Búsqueda de un plan"
+					style="margin-bottom:20px">
 					<h:panelGrid columns="5" cellpadding="10">
 						<h:outputLabel value="Tipo de plan" />
 						<h:selectOneMenu value="#{planSearch.planType}">
@@ -35,14 +36,14 @@
 							action="#{planSearch.buscar()}" update="planResults" />
 					</h:panelGrid>
 				</p:panel>
-				<h:commandLink action="plan_new" value="Crear plan" immediate="true"/>
+				<h:commandLink action="plan_new" value="Crear plan" immediate="true" />
 
 				<p:panel id="planResults">
 					<p:panel rendered="#{empty planSearch.plans}">
 						No se encontraron resultados
 					</p:panel>
-					<h:dataTable rendered="#{not empty planSearch.plans}" value="#{planSearch.plans}"
-						var="plan" styleClass="order-table"
+					<h:dataTable rendered="#{not empty planSearch.plans}"
+						value="#{planSearch.plans}" var="plan" styleClass="order-table"
 						headerClass="order-table-header"
 						rowClasses="order-table-odd-row,order-table-even-row">
 
@@ -66,7 +67,12 @@
 
 						<h:column>
 							<f:facet name="header">Accion</f:facet>
-							<h:outputText value="#{plan.id}"></h:outputText>
+							<h:column>
+								<p:commandButton icon="ui-icon-edit" title="Cuotas"
+									action="plan_detail" immediate="true">
+									<f:param name="id" value="#{plan.id}" />
+								</p:commandButton>
+							</h:column>
 						</h:column>
 
 					</h:dataTable>

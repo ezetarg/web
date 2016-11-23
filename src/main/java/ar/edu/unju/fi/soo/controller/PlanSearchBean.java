@@ -30,10 +30,10 @@ public class PlanSearchBean implements Serializable {
 		plans = agencyService.findPlanByClientName(clientField);
 	}
 	
-	public List<Plan> buscar() {
+	public String buscar() {
 		plans = agencyService.findPlanByClientDNI(planType, clientField);
 		System.out.println(plans);
-		return plans;
+		return null;
 	}
 
 	public List<Plan> getPlans() {
