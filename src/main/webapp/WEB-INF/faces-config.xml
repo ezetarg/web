@@ -24,37 +24,37 @@
 		<navigation-case>
 			<from-outcome>welcome</from-outcome>
 			<to-view-id>/index.xhtml</to-view-id>
-			<redirect/>
+			<redirect />
 		</navigation-case>
 	</navigation-rule>
 	<!-- CLIENT -->
-    <navigation-rule>
-        <navigation-case>
-            <from-outcome>client_index</from-outcome>
-            <to-view-id>/modulos/client/index.xhtml</to-view-id>
-            <redirect/>
-        </navigation-case>
-    </navigation-rule>
-    <navigation-rule>
-        <navigation-case>
-            <from-outcome>client_edit</from-outcome>
-            <to-view-id>/modulos/client/edit.xhtml</to-view-id>
-            <redirect include-view-params="true"/>
-        </navigation-case>
-    </navigation-rule>
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>client_index</from-outcome>
+			<to-view-id>/modulos/client/index.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>client_edit</from-outcome>
+			<to-view-id>/modulos/client/edit.xhtml</to-view-id>
+			<redirect include-view-params="true" />
+		</navigation-case>
+	</navigation-rule>
 	<!-- PLAN -->
 	<navigation-rule>
 		<navigation-case>
 			<from-outcome>plan_index</from-outcome>
 			<to-view-id>/modulos/plan/index.xhtml</to-view-id>
-			<redirect/>
+			<redirect />
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
 		<navigation-case>
 			<from-outcome>plan_new</from-outcome>
 			<to-view-id>/modulos/plan/new.xhtml</to-view-id>
-			<redirect/>
+			<redirect />
 		</navigation-case>
 	</navigation-rule>
 	<!-- VEHICLE -->
@@ -62,7 +62,14 @@
 		<navigation-case>
 			<from-outcome>vehicle_index</from-outcome>
 			<to-view-id>/modulos/vehicle/index.xhtml</to-view-id>
-			<redirect/>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>vehicle_edit</from-outcome>
+			<to-view-id>/modulos/vehicle/edit.xhtml</to-view-id>
+			<redirect include-view-params="true" />
 		</navigation-case>
 	</navigation-rule>
 </faces-config>

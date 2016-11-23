@@ -18,34 +18,45 @@
 
 			<p:outputLabel value="#{aplicacion_bienvenido}" />
 
-			<h:dataTable value="#{vehicleList.list}" var="vehicle"
-				styleClass="order-table" headerClass="order-table-header"
-				rowClasses="order-table-odd-row,order-table-even-row">
+			<h:form>
+				<h:commandLink action="vehicle_edit" value="Crear vehiculo"
+					immediate="true" />
+				<p:panel rendered="#{empty vehicleList.list}">No se encontraron resultados</p:panel>
+				<h:dataTable rendered="#{not empty vehicleList.list}"
+					value="#{vehicleList.list}" var="vehicle" styleClass="order-table"
+					headerClass="order-table-header"
+					rowClasses="order-table-odd-row,order-table-even-row">
 
-				<h:column>
-					<!-- column header -->
-					<f:facet name="header">ID</f:facet>
-					<!-- row record -->
-					<h:outputText value="#{vehicle.id}"></h:outputText>
-				</h:column>
+					<h:column>
+						<!-- column header -->
+						<f:facet name="header">ID</f:facet>
+						<!-- row record -->
+						<h:outputText value="#{vehicle.id}"></h:outputText>
+					</h:column>
 
-				<h:column>
-					<f:facet name="header">Marca</f:facet>
-					<h:outputText value="#{vehicle.brand}"></h:outputText>
-				</h:column>
+					<h:column>
+						<f:facet name="header">Marca</f:facet>
+						<h:outputText value="#{vehicle.brand}"></h:outputText>
+					</h:column>
 
-				<h:column>
-					<f:facet name="header">Modelo</f:facet>
-					<h:outputText value="#{vehicle.model}"></h:outputText>
-				</h:column>
+					<h:column>
+						<f:facet name="header">Modelo</f:facet>
+						<h:outputText value="#{vehicle.model}"></h:outputText>
+					</h:column>
 
-				<h:column>
-					<f:facet name="header">Precio</f:facet>
-					<h:outputText value="#{vehicle.value}"></h:outputText>
-				</h:column>
+					<h:column>
+						<f:facet name="header">Precio</f:facet>
+						<h:outputText value="#{vehicle.value}"></h:outputText>
+					</h:column>
 
-			</h:dataTable>
-
+					<h:column>
+						<p:commandButton icon="ui-icon-edit" title="Editar"
+							action="vehicle_edit" immediate="true">
+							<f:param name="id" value="#{vehicle.id}" />
+						</p:commandButton>
+					</h:column>
+				</h:dataTable>
+			</h:form>
 		</ui:define>
 
 	</ui:composition>
