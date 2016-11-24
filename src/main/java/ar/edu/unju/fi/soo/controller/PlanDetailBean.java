@@ -38,7 +38,7 @@ public class PlanDetailBean implements Serializable {
 	}
 
 	public String payNextFee() {
-		agencyService.payNextFee(plan.getId());
+		agencyService.payNextFee(id != null ? id : plan.getId());
 		return "plan_detail";
 	}
 

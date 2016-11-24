@@ -22,6 +22,7 @@
 			<p:outputLabel value="#{aplicacion_bienvenido}" />
 
 			<h:form>
+				<h:inputHidden id="id" value="#{planDetail.id}"/>
 				<p:panel id="basic" header="Nuevo plan" style="margin-bottom:20px">
 					<p:growl id="growl" showDetail="true" sticky="true" life="800" />
 					<h:panelGrid columns="6" cellpadding="10">
@@ -67,14 +68,18 @@
 							<!-- column header -->
 							<f:facet name="header">Fecha de vencimiento</f:facet>
 							<!-- row record -->
-							<h:outputText value="#{fee.dueDate}"></h:outputText>
+							<h:outputText value="#{fee.dueDate}">
+								<f:convertDateTime type="date" pattern="dd/MM/yyyy" />
+							</h:outputText>
 						</p:column>
 
 						<p:column>
 							<!-- column header -->
 							<f:facet name="header">Fecha de pago</f:facet>
 							<!-- row record -->
-							<h:outputText value="#{fee.paymentDate}"></h:outputText>
+							<h:outputText value="#{fee.paymentDate}">
+								<f:convertDateTime type="date" pattern="dd/MM/yyyy" />
+							</h:outputText>
 						</p:column>
 
 						<p:column>
@@ -88,7 +93,7 @@
 							<!-- column header -->
 							<f:facet name="header">Importe</f:facet>
 							<!-- row record -->
-							<h:outputText value="#{fee.paymentDate ? 'Pagada' : 'Adeudada'}"></h:outputText>
+							<h:outputText value="#{fee.paymentDate != null ? 'Pagada' : 'Adeudada'}"></h:outputText>
 						</p:column>
 
 					</p:dataTable>
