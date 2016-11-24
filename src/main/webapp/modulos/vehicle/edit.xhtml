@@ -10,9 +10,6 @@
 <h:body>
 
 	<ui:composition template="/templates/template.xhtml">
-		<ui:define name="windowTitle">
-			<p:outputLabel value="#{msg.aplicacion_titulo}" />
-		</ui:define>
 
 		<ui:define name="content">
 			<f:metadata>
@@ -22,14 +19,16 @@
 			<p:outputLabel value="#{aplicacion_bienvenido}" />
 
 			<h:form>
+				<p:growl id="growl" showDetail="true" sticky="true" life="800" />
+				<h:inputHidden id="id" value="#{vehicleEdit.vehicle.id}"></h:inputHidden>
 				<h:panelGrid columns="2">
-					
+
 					<h:outputText value="VehicleId:" />
 					<h:outputText id="vehicleId" value="#{vehicleEdit.vehicle.id}"
 						title="VehicleId" />
-				    
+
 					<h:outputText value="Marca:" />
-					
+
 					<p:inputText id="vehicleName" value="#{vehicleEdit.vehicle.brand}"
 						title="gola"></p:inputText>
 
@@ -41,13 +40,13 @@
 					<p:inputText id="vehiclePrice" value="#{vehicleEdit.vehicle.value}"
 						title="Precio" />
 				</h:panelGrid>
-				  <h:panelGrid columns="4" cellpadding="5">
-        			<p:commandButton action="#{vehicleEdit.save}" value="Guardar"
-					immediate="true" />
-     				<p:commandButton value="Volver" action="welcome" inmediate="true"
-					immediate="true" />
-   				 </h:panelGrid>
-			
+				<h:panelGrid columns="4" cellpadding="5">
+					<p:commandButton action="#{vehicleEdit.save}" value="Guardar"
+						immediate="true" />
+					<p:commandButton value="Volver" action="vehicle_index"
+						inmediate="true" immediate="true" />
+				</h:panelGrid>
+
 			</h:form>
 		</ui:define>
 

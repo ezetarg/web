@@ -21,6 +21,7 @@
 
 			<p:outputLabel value="#{aplicacion_bienvenido}" />
 			<h:form>
+				<p:growl id="growl" showDetail="true" sticky="true" life="800" />
 				<h:inputHidden id="id" value="#{clientEdit.client.id}"></h:inputHidden>
 				<h:panelGrid columns="2">
 					<h:outputText value="ClientId:" />
@@ -31,21 +32,21 @@
 					<h:outputText value="Nombre:" />
 					<p:inputText id="clientName" value="#{clientEdit.client.name}"
 						title="Nombre" />
-					
+
 					<h:outputText value="DNI" />
-					<p:inputText id="clientDni"
-						value="#{clientEdit.client.dni}" title="Dni" />
-	
+					<p:inputText id="clientDni" value="#{clientEdit.client.dni}"
+						title="Dni" />
+
 					<h:outputText value="Dirección:" />
 					<p:inputText id="clientAddress"
 						value="#{clientEdit.client.address}" title="Dirección" />
 				</h:panelGrid>
-				 <h:panelGrid columns="4" cellpadding="5">
-        			<p:commandButton action="#{clientEdit.save}" value="Guardar"
-					immediate="true" />
-     				<p:commandButton value="Volver" action="welcome" inmediate="true"
-					immediate="true" />
-   				 </h:panelGrid>
+				<h:panelGrid columns="4" cellpadding="5">
+					<p:commandButton action="#{clientEdit.save()}" value="Guardar"
+						immediate="true" />
+					<p:commandButton value="Volver" action="client_index"
+						inmediate="true" immediate="true" />
+				</h:panelGrid>
 			</h:form>
 		</ui:define>
 

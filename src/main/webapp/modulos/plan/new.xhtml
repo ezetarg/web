@@ -10,10 +10,6 @@
 <h:body>
 
 	<ui:composition template="/templates/template.xhtml">
-		<ui:define name="windowTitle">
-			<p:outputLabel value="#{msg.aplicacion_titulo}" />
-		</ui:define>
-
 		<ui:define name="content">
 
 			<p:outputLabel value="#{aplicacion_bienvenido}" />
@@ -32,7 +28,7 @@
 						<h:outputLabel value="Vehículo" />
 						<h:selectOneMenu value="#{planEdit.vehicleId}">
 							<f:selectItems value="#{planEdit.vehicles}" var="v"
-							     itemLabel="#{v.brand} #{v.model}" itemValue="#{v.id}"/>
+								itemLabel="#{v.brand} #{v.model}" itemValue="#{v.id}" />
 						</h:selectOneMenu>
 
 						<h:outputLabel value="Tipo de plan" />
@@ -42,9 +38,12 @@
 						</h:selectOneMenu>
 
 						<h:outputLabel value="Cantidad de cuotas" />
-						<h:inputText value="#{planEdit.feesQuantity}"/>
+						<h:inputText value="#{planEdit.feesQuantity}">
+							<f:validateLongRange maximum="150" minimum="1" />
+						</h:inputText>
 
-						<p:commandButton id="submit" value="Guardar" action="#{planEdit.save()}" />
+						<p:commandButton id="submit" value="Guardar"
+							action="#{planEdit.save()}" />
 						<p:commandButton id="cancel" value="Cancelar" action="plan_index"
 							immediate="true" />
 					</h:panelGrid>
