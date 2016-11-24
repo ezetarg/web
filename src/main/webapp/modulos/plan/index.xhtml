@@ -51,24 +51,33 @@
 						</p:column>
 
 						<p:column>
+							<f:facet name="header">Fecha creación</f:facet>
+							<h:outputText value="#{plan.createDate}">
+								<f:convertDateTime type="date" pattern="dd/MM/yyyy" />
+							</h:outputText>
+						</p:column>
+
+						<p:column>
+							<f:facet name="header">Tipo plan</f:facet>
+							<h:outputText value="#{plan['class'].simpleName eq 'PlanRegular' ? 'Plan Regular' : 'Plan 70/30'}"></h:outputText>
+						</p:column>
+
+						<p:column>
 							<f:facet name="header">Cliente</f:facet>
 							<h:outputText value="#{plan.client.name}"></h:outputText>
 						</p:column>
 
 						<p:column>
 							<f:facet name="header">Vehiculo</f:facet>
-							<h:outputText value="#{plan.vehicle.brand}"></h:outputText>
-							<h:outputText value="#{plan.vehicle.model}"></h:outputText>
+							<h:outputText value="#{plan.vehicle.brand} #{plan.vehicle.model} (#{plan.vehicle.code})"/>
 						</p:column>
 
 						<p:column>
 							<f:facet name="header">Accion</f:facet>
-							<h:column>
-								<p:commandButton icon="ui-icon-pencil" title="Cuotas"
-									action="plan_detail" immediate="true">
-									<f:param name="id" value="#{plan.id}" />
-								</p:commandButton>
-							</h:column>
+							<p:commandButton icon="ui-icon-search" title="Cuotas"
+								action="plan_detail" immediate="true">
+								<f:param name="id" value="#{plan.id}" />
+							</p:commandButton>
 						</p:column>
 
 					</p:dataTable>

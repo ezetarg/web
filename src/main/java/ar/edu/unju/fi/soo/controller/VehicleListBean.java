@@ -25,6 +25,13 @@ public class VehicleListBean implements Serializable {
 		list = agencyService.listVehicles();
 	}
 
+	public void remove(Vehicle vehicle) {
+		// call to delete method in the service
+		agencyService.deleteVehicle(vehicle);
+		// and reload the list.
+		list = agencyService.listVehicles();
+	}
+
 	public AgencyService getAgencyService() {
 		return agencyService;
 	}

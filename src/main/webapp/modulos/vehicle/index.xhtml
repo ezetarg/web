@@ -16,7 +16,7 @@
 			<p:outputLabel value="#{aplicacion_bienvenido}" />
 
 			<h:form>
-				
+
 				<p:panel rendered="#{empty vehicleList.list}">No se encontraron resultados</p:panel>
 				<p:dataTable rendered="#{not empty vehicleList.list}"
 					value="#{vehicleList.list}" var="vehicle" styleClass="order-table"
@@ -28,6 +28,11 @@
 						<f:facet name="header">ID</f:facet>
 						<!-- row record -->
 						<h:outputText value="#{vehicle.id}"></h:outputText>
+					</p:column>
+
+					<p:column>
+						<f:facet name="header">Código Auto</f:facet>
+						<h:outputText value="#{vehicle.code}"></h:outputText>
 					</p:column>
 
 					<p:column>
@@ -47,9 +52,11 @@
 
 					<p:column>
 						<p:commandButton icon="ui-icon-pencil" title="Editar"
-							action="vehicle_edit" immediate="true">
+							action="vehicle_edit">
 							<f:param name="id" value="#{vehicle.id}" />
 						</p:commandButton>
+						<p:commandButton icon="ui-icon-trash" title="Borrar"
+							actionListener="#{vehicleList.remove(vehicle)}" ajax="false" />
 					</p:column>
 				</p:dataTable>
 				<p:separator></p:separator>

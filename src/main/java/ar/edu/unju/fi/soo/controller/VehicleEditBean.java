@@ -5,13 +5,11 @@ import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.ViewScoped;
 
 import ar.edu.unju.fi.soo.model.Vehicle;
 import ar.edu.unju.fi.soo.services.AgencyService;
 
 @ManagedBean(name = "vehicleEdit")
-//@ViewScoped
 public class VehicleEditBean implements Serializable {
 
 	private static final long serialVersionUID = 1914887930474267752L;
@@ -22,22 +20,19 @@ public class VehicleEditBean implements Serializable {
 	@ManagedProperty("#{param['id']}")
 	private Long id;
 
-	private Vehicle vehicle = new Vehicle();
+	private Vehicle vehicle;
 
 	@PostConstruct
 	public void init() {
-		System.out.println("----------------------------------------------------");
-		System.out.println("id " + id);
-		System.out.println("----------------------------------------------------");
-		if (id != null) {
-			vehicle = agencyService.getVehicleById(id);
+		if (vehicle == null) {
+			vehicle = (id == null) ? new Vehicle() : agencyService.getVehicleById(id);
 		}
 	}
 
 	public String save() {
 		try {
+			vehicle.setId(id);
 			agencyService.saveVehicle(vehicle);
-			vehicle = null;
 			JsfUtil.addSuccessMessage("El vehiculo se ha creado exitosamente.");
 		} catch (Exception e) {
 			JsfUtil.ensureAddErrorMessage(e, "A persistence error occurred.");
@@ -59,6 +54,7 @@ public class VehicleEditBean implements Serializable {
 	}
 
 	public void setVehicle(Vehicle vehicle) {
+		System.out.println("setVehicle " + vehicle);
 		this.vehicle = vehicle;
 	}
 
@@ -67,6 +63,7 @@ public class VehicleEditBean implements Serializable {
 	}
 
 	public void setId(Long id) {
+		System.out.println("this.id " + this.id + " setid " + id);
 		this.id = id;
 	}
 

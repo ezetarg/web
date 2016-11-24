@@ -46,49 +46,52 @@
 						<h:outputText value="#{planDetail.planType}" />
 					</h:panelGrid>
 
-					<h:dataTable rendered="#{not empty planDetail.plan.fees}"
+					<p:commandButton id="cancel" value="Volver" action="plan_index"
+						icon="ui-icon-arrowthick-1-w" immediate="true" />
+					<p:commandButton icon="ui-icon-arrowthick-1-e" title="Cuotas"
+						action="#{planDetail.payNextFee()}" value="Pagar siguiente cuota" />
+
+					<p:dataTable rendered="#{not empty planDetail.plan.fees}"
 						value="#{planDetail.plan.fees}" var="fee" styleClass="order-table"
 						headerClass="order-table-header"
 						rowClasses="order-table-odd-row,order-table-even-row">
 
-						<h:column>
+						<p:column>
 							<!-- column header -->
 							<f:facet name="header">Numero</f:facet>
 							<!-- row record -->
-							<h:outputText value="#{fee.number}"></h:outputText>
-						</h:column>
+							<h:outputText value="#{fee.number + 1}"></h:outputText>
+						</p:column>
 
-						<h:column>
+						<p:column>
 							<!-- column header -->
 							<f:facet name="header">Fecha de vencimiento</f:facet>
 							<!-- row record -->
 							<h:outputText value="#{fee.dueDate}"></h:outputText>
-						</h:column>
+						</p:column>
 
-						<h:column>
+						<p:column>
 							<!-- column header -->
 							<f:facet name="header">Fecha de pago</f:facet>
 							<!-- row record -->
 							<h:outputText value="#{fee.paymentDate}"></h:outputText>
-						</h:column>
+						</p:column>
 
-						<h:column>
+						<p:column>
 							<!-- column header -->
 							<f:facet name="header">Importe</f:facet>
 							<!-- row record -->
 							<h:outputText value="#{fee.amount}"></h:outputText>
-						</h:column>
+						</p:column>
 
-						<h:column>
+						<p:column>
 							<!-- column header -->
 							<f:facet name="header">Importe</f:facet>
 							<!-- row record -->
 							<h:outputText value="#{fee.paymentDate ? 'Pagada' : 'Adeudada'}"></h:outputText>
-						</h:column>
+						</p:column>
 
-					</h:dataTable>
-					<p:commandButton id="cancel" value="Volver" action="plan_index"
-						immediate="true" />
+					</p:dataTable>
 				</p:panel>
 			</h:form>
 		</ui:define>

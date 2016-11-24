@@ -42,10 +42,8 @@
 							<f:validateLongRange maximum="150" minimum="1" />
 						</h:inputText>
 
-						<p:commandButton id="submit" value="Guardar"
-							action="#{planEdit.save()}" />
-						<p:commandButton id="cancel" value="Cancelar" action="plan_index"
-							immediate="true" />
+						<p:commandButton id="submit" value="Guardar" action="#{planEdit.save()}" icon="ui-icon-disk" />
+						<p:commandButton id="cancel" value="Cancelar" action="plan_index" immediate="true" />
 					</h:panelGrid>
 				</p:panel>
 			</h:form>

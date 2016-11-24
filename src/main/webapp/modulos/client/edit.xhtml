@@ -35,17 +35,15 @@
 
 					<h:outputText value="DNI" />
 					<p:inputText id="clientDni" value="#{clientEdit.client.dni}"
-						title="Dni" />
+						title="DNI" />
 
 					<h:outputText value="Dirección:" />
 					<p:inputText id="clientAddress"
 						value="#{clientEdit.client.address}" title="Dirección" />
 				</h:panelGrid>
 				<h:panelGrid columns="4" cellpadding="5">
-					<p:commandButton action="#{clientEdit.save()}" value="Guardar"
-						immediate="true" />
-					<p:commandButton value="Volver" action="client_index"
-						inmediate="true" immediate="true" />
+					<p:commandButton action="#{clientEdit.save()}" value="Guardar" icon="ui-icon-disk" />
+					<p:commandButton value="Volver" action="client_index" immediate="true" />
 				</h:panelGrid>
 			</h:form>
 		</ui:define>
