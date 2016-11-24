@@ -6,11 +6,13 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.ViewScoped;
 
 import ar.edu.unju.fi.soo.model.Client;
 import ar.edu.unju.fi.soo.services.AgencyService;
 
 @ManagedBean(name = "clientList")
+@ViewScoped
 public class ClientListBean implements Serializable {
 
 	private static final long serialVersionUID = 7784570305701107835L;

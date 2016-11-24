@@ -1,17 +1,17 @@
 package ar.edu.unju.fi.soo.controller;
 
 import java.io.Serializable;
-import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.context.FacesContext;
+import javax.faces.bean.ViewScoped;
 
 import ar.edu.unju.fi.soo.model.Client;
 import ar.edu.unju.fi.soo.services.AgencyService;
 
 @ManagedBean(name = "clientEdit")
+//@ViewScoped
 public class ClientEditBean implements Serializable {
 
 	private static final long serialVersionUID = -6693455350411733327L;
@@ -22,20 +22,15 @@ public class ClientEditBean implements Serializable {
 	@ManagedProperty("#{param['id']}")
 	private Long id;
 
-	private Client client;
+	private Client client = new Client();
 
 	@PostConstruct
 	public void init() {
 		System.out.println("----------------------------------------------------");
-		Map<String, String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
-		String paramId = params.get("id");
-		System.out.println("paramId " + paramId);
 		System.out.println("id " + id);
 		System.out.println("----------------------------------------------------");
 		if (id != null) {
 			client = agencyService.getClientById(id);
-		} else {
-			client = new Client();
 		}
 	}
 
@@ -43,7 +38,7 @@ public class ClientEditBean implements Serializable {
 		try {
 			agencyService.saveClient(client);
 			client = null;
-			JsfUtil.addSuccessMessage("Product was successfully created.");
+			JsfUtil.addSuccessMessage("El cliente se ha creado exitosamente.");
 		} catch (Exception e) {
 			JsfUtil.ensureAddErrorMessage(e, "A persistence error occurred.");
 			return null;

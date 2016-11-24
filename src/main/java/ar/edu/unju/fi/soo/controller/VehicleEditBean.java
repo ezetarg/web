@@ -5,11 +5,13 @@ import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.ViewScoped;
 
 import ar.edu.unju.fi.soo.model.Vehicle;
 import ar.edu.unju.fi.soo.services.AgencyService;
 
 @ManagedBean(name = "vehicleEdit")
+//@ViewScoped
 public class VehicleEditBean implements Serializable {
 
 	private static final long serialVersionUID = 1914887930474267752L;
@@ -36,12 +38,12 @@ public class VehicleEditBean implements Serializable {
 		try {
 			agencyService.saveVehicle(vehicle);
 			vehicle = null;
-			JsfUtil.addSuccessMessage("Product was successfully created.");
+			JsfUtil.addSuccessMessage("El vehiculo se ha creado exitosamente.");
 		} catch (Exception e) {
 			JsfUtil.ensureAddErrorMessage(e, "A persistence error occurred.");
 			return null;
 		}
-		return "client_index";
+		return "vehicle_index";
 	}
 
 	public AgencyService getAgencyService() {
