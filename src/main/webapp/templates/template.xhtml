@@ -8,7 +8,7 @@
 
 <h:head>
 	<ui:insert name="windowTitle">
-		<p:outputLabel value="#{msg.aplicacion_titulo}" />
+		<title>#{msg.aplicacion_titulo}</title>
 	</ui:insert>
 	<h:outputStylesheet library="css" name="style.css" />
 
@@ -16,7 +16,7 @@
 <h:body style="width:900px;">
 	<p:layout fullPage="true">
 
-		<p:layoutUnit position="north" size="190" resizable="true"
+		<p:layoutUnit position="north" size="100" resizable="true"
 			closable="false" collapsible="false">
 			<div align="center">
 				<p:outputLabel value="#{msg.aplicacion_titulo}" />
@@ -27,8 +27,9 @@
 					<p:growl id="messages" showDetail="true" />
 
 					<p:menubar>
-						<p:menuitem value="#{msg.menu_cambiarClave}" update="messages"
-							icon="ui-icon-search" url="#" />
+						<p:menuitem value="Planes" action="/modulos/plan/index.xhtml" update="messages" icon="ui-icon-search" />
+						<p:menuitem value="Clientes" action="/modulos/client/index.xhtml" update="messages" icon="ui-icon-search" />
+						<p:menuitem value="Vehiculos" action="/modulos/vehicle/index.xhtml" update="messages" icon="ui-icon-search" />
 						<p:menuitem value="#{msg.menu_salir}"
 							actionListener="#{loginBean.closeSession}" ajax="false"
 							url="/faces/index.xhtml?faces-redirect=true" icon="ui-icon-close"

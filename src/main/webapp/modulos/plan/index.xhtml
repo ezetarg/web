@@ -1,0 +1,94 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title><p:outputLabel value="#{msg.aplicacion_titulo}" /></title>
+</h:head>
+<h:body>
+
+	<ui:composition template="/templates/template.xhtml">
+
+		<ui:define name="content">
+
+			<p:outputLabel value="#{aplicacion_bienvenido}" />
+
+			<h:form>
+				<p:panel id="basic" header="Búsqueda de un plan"
+					style="margin-bottom:20px">
+					<h:panelGrid columns="5" cellpadding="10">
+						<h:outputLabel value="Tipo de plan" />
+						<h:selectOneMenu value="#{planSearch.planType}">
+							<f:selectItem itemValue="" itemLabel="Todos" />
+							<f:selectItem itemValue="planRegular" itemLabel="Plan regular" />
+							<f:selectItem itemValue="plan7030" itemLabel="Plan 70/30" />
+						</h:selectOneMenu>
+
+						<h:outputLabel value="DNI del cliente" />
+						<h:inputText value="#{planSearch.clientField}" />
+
+						<p:commandButton id="submit" value="Buscar"
+							action="#{planSearch.buscar()}" update="planResults" />
+					</h:panelGrid>
+				</p:panel>
+
+				<p:panel id="planResults">
+					<p:panel rendered="#{empty planSearch.plans}">
+						No se encontraron resultados
+					</p:panel>
+					<p:dataTable rendered="#{not empty planSearch.plans}"
+						value="#{planSearch.plans}" var="plan" styleClass="order-table"
+						headerClass="order-table-header"
+						rowClasses="order-table-odd-row,order-table-even-row">
+
+						<p:column>
+							<!-- column header -->
+							<f:facet name="header">ID</f:facet>
+							<!-- row record -->
+							<h:outputText value="#{plan.id}"></h:outputText>
+						</p:column>
+
+						<p:column>
+							<f:facet name="header">Fecha creación</f:facet>
+							<h:outputText value="#{plan.createDate}">
+								<f:convertDateTime type="date" pattern="dd/MM/yyyy" />
+							</h:outputText>
+						</p:column>
+
+						<p:column>
+							<f:facet name="header">Tipo plan</f:facet>
+							<h:outputText value="#{plan['class'].simpleName eq 'PlanRegular' ? 'Plan Regular' : 'Plan 70/30'}"></h:outputText>
+						</p:column>
+
+						<p:column>
+							<f:facet name="header">Cliente</f:facet>
+							<h:outputText value="#{plan.client.name}"></h:outputText>
+						</p:column>
+
+						<p:column>
+							<f:facet name="header">Vehiculo</f:facet>
+							<h:outputText value="#{plan.vehicle.brand} #{plan.vehicle.model} (#{plan.vehicle.code})"/>
+						</p:column>
+
+						<p:column>
+							<f:facet name="header">Accion</f:facet>
+							<p:commandButton icon="ui-icon-search" title="Cuotas"
+								action="plan_detail" immediate="true">
+								<f:param name="id" value="#{plan.id}" />
+							</p:commandButton>
+						</p:column>
+
+					</p:dataTable>
+				</p:panel>
+				<br />
+				<p:commandButton action="plan_new" value="Crear plan"
+					immediate="true" />
+			</h:form>
+		</ui:define>
+
+	</ui:composition>
+
+</h:body>
+</html>

@@ -1,0 +1,59 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title><p:outputLabel value="#{msg.aplicacion_titulo}" /></title>
+</h:head>
+<h:body>
+
+	<ui:composition template="/templates/template.xhtml">
+
+		<ui:define name="content">
+
+			<p:outputLabel value="#{aplicacion_bienvenido}" />
+
+			<h:form>
+				<p:panel id="basic" header="Edición de los datos del vehículo" style="margin-bottom:20px">
+					<f:metadata>
+						<f:viewParam name="id" value="#{vehicleEdit.id}" />
+					</f:metadata>
+					<p:growl id="growl" showDetail="true" sticky="true" life="800" />
+					<h:panelGrid columns="2">
+
+						<h:outputText value="VehicleId:" />
+						<h:outputText id="vehicleId" value="#{vehicleEdit.vehicle.id}"
+							title="VehicleId" />
+
+						<h:outputText value="Código Auto:" />
+						<p:inputText id="vehicleCode" value="#{vehicleEdit.vehicle.code}"
+							title="Código Auto" />
+
+						<h:outputText value="Marca:" />
+						<p:inputText id="vehicleBrand"
+							value="#{vehicleEdit.vehicle.brand}" title="Marca"></p:inputText>
+
+						<h:outputText value="Modelo:" />
+						<p:inputText id="vehicleModel"
+							value="#{vehicleEdit.vehicle.model}" title="Modelo" />
+
+						<h:outputText value="Precio:" />
+						<p:inputText id="vehiclePrice"
+							value="#{vehicleEdit.vehicle.value}" title="Precio" />
+					</h:panelGrid>
+					<h:panelGrid columns="4" cellpadding="5">
+						<p:commandButton action="#{vehicleEdit.save()}" value="Guardar"
+							icon="ui-icon-disk" />
+						<p:commandButton value="Volver" action="vehicle_index"
+							inmediate="true" />
+					</h:panelGrid>
+				</p:panel>
+			</h:form>
+		</ui:define>
+
+	</ui:composition>
+
+</h:body>
+</html>

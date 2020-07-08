@@ -1,0 +1,55 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title><p:outputLabel value="#{msg.aplicacion_titulo}" /></title>
+</h:head>
+<h:body>
+
+	<ui:composition template="/templates/template.xhtml">
+		<ui:define name="content">
+
+			<p:outputLabel value="#{aplicacion_bienvenido}" />
+
+			<h:form>
+				<p:panel id="basic" header="Nuevo plan" style="margin-bottom:20px">
+					<p:growl id="growl" showDetail="true" sticky="true" life="800" />
+
+					<h:panelGrid columns="2" cellpadding="10">
+						<h:outputLabel value="Cliente" />
+						<h:selectOneMenu value="#{planEdit.clientId}">
+							<f:selectItems value="#{planEdit.clients}" var="c"
+								itemLabel="#{c.name}" itemValue="#{c.id}" />
+						</h:selectOneMenu>
+
+						<h:outputLabel value="Vehículo" />
+						<h:selectOneMenu value="#{planEdit.vehicleId}">
+							<f:selectItems value="#{planEdit.vehicles}" var="v"
+								itemLabel="#{v.brand} #{v.model}" itemValue="#{v.id}" />
+						</h:selectOneMenu>
+
+						<h:outputLabel value="Tipo de plan" />
+						<h:selectOneMenu value="#{planEdit.planType}">
+							<f:selectItem itemValue="planRegular" itemLabel="Plan regular" />
+							<f:selectItem itemValue="plan7030" itemLabel="Plan 70/30" />
+						</h:selectOneMenu>
+
+						<h:outputLabel value="Cantidad de cuotas" />
+						<h:inputText value="#{planEdit.feesQuantity}">
+							<f:validateLongRange maximum="150" minimum="1" />
+						</h:inputText>
+
+						<p:commandButton id="submit" value="Guardar" action="#{planEdit.save()}" icon="ui-icon-disk" />
+						<p:commandButton id="cancel" value="Cancelar" action="plan_index" immediate="true" />
+					</h:panelGrid>
+				</p:panel>
+			</h:form>
+		</ui:define>
+
+	</ui:composition>
+
+</h:body>
+</html>

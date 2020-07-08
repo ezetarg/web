@@ -12,6 +12,8 @@
 hs_err_pid*
 .classpath
 .project
+/.metadata/
 /.settings/
 /target/
 /.idea/
+/build/

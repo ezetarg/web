@@ -1,0 +1,107 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title><p:outputLabel value="#{msg.aplicacion_titulo}" /></title>
+</h:head>
+<h:body>
+
+	<ui:composition template="/templates/template.xhtml">
+		<ui:define name="windowTitle">
+			<p:outputLabel value="#{msg.aplicacion_titulo}" />
+		</ui:define>
+
+		<ui:define name="content">
+			<f:metadata>
+				<f:viewParam name="id" value="#{planDetail.id}" />
+			</f:metadata>
+
+			<p:outputLabel value="#{aplicacion_bienvenido}" />
+
+			<h:form>
+				<h:inputHidden id="id" value="#{planDetail.id}"/>
+				<p:panel id="basic" header="Nuevo plan" style="margin-bottom:20px">
+					<p:growl id="growl" showDetail="true" sticky="true" life="800" />
+					<h:panelGrid columns="6" cellpadding="10">
+						<h:outputLabel value="Cliente" />
+						<h:outputText value="#{planDetail.plan.client.name}" />
+
+						<h:outputLabel value="Vehículo" />
+						<h:outputText
+							value="#{planDetail.plan.vehicle.brand} #{planDetail.plan.vehicle.model}" />
+
+						<h:outputLabel value="Precio" />
+						<h:outputText value="#{planDetail.plan.vehicle.value}">
+							<f:convertNumber type="currency" currencySymbol="$" />
+						</h:outputText>
+
+						<h:outputLabel value="Tipo de plan" />
+						<h:outputText value="#{planDetail.plan.createDate}">
+							<f:convertDateTime type="date" pattern="dd/MM/yyyy" />
+						</h:outputText>
+
+						<h:outputLabel value="Tipo de plan" />
+						<h:outputText value="#{planDetail.planType}" />
+					</h:panelGrid>
+
+					<p:commandButton id="cancel" value="Volver" action="plan_index"
+						icon="ui-icon-arrowthick-1-w" immediate="true" />
+					<p:commandButton icon="ui-icon-arrowthick-1-e" title="Cuotas"
+						action="#{planDetail.payNextFee()}" value="Pagar siguiente cuota" />
+
+					<p:dataTable rendered="#{not empty planDetail.plan.fees}"
+						value="#{planDetail.plan.fees}" var="fee" styleClass="order-table"
+						headerClass="order-table-header"
+						rowClasses="order-table-odd-row,order-table-even-row">
+
+						<p:column>
+							<!-- column header -->
+							<f:facet name="header">Numero</f:facet>
+							<!-- row record -->
+							<h:outputText value="#{fee.number + 1}"></h:outputText>
+						</p:column>
+
+						<p:column>
+							<!-- column header -->
+							<f:facet name="header">Fecha de vencimiento</f:facet>
+							<!-- row record -->
+							<h:outputText value="#{fee.dueDate}">
+								<f:convertDateTime type="date" pattern="dd/MM/yyyy" />
+							</h:outputText>
+						</p:column>
+
+						<p:column>
+							<!-- column header -->
+							<f:facet name="header">Fecha de pago</f:facet>
+							<!-- row record -->
+							<h:outputText value="#{fee.paymentDate}">
+								<f:convertDateTime type="date" pattern="dd/MM/yyyy" />
+							</h:outputText>
+						</p:column>
+
+						<p:column>
+							<!-- column header -->
+							<f:facet name="header">Importe</f:facet>
+							<!-- row record -->
+							<h:outputText value="#{fee.amount}"></h:outputText>
+						</p:column>
+
+						<p:column>
+							<!-- column header -->
+							<f:facet name="header">Importe</f:facet>
+							<!-- row record -->
+							<h:outputText value="#{fee.paymentDate != null ? 'Pagada' : 'Adeudada'}"></h:outputText>
+						</p:column>
+
+					</p:dataTable>
+				</p:panel>
+			</h:form>
+		</ui:define>
+
+	</ui:composition>
+
+</h:body>
+</html>

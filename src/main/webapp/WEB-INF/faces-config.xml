@@ -5,11 +5,13 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd"
 	version="2.0">
 	<application>
-		<message-bundle>resources.application</message-bundle>
-		<locale-config>
-			<default-locale>es</default-locale>
-<!-- 			<supported-locale>en</supported-locale> -->
-		</locale-config>
+		<el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
+
+		<!-- <message-bundle>resources.application</message-bundle> -->
+		<!-- <locale-config> -->
+		<!-- <default-locale>es</default-locale> -->
+		<!-- <supported-locale>en</supported-locale> -->
+		<!-- </locale-config> -->
 
 		<resource-bundle>
 			<base-name>ar.edu.unju.fi.soo.messages</base-name>
@@ -17,4 +19,63 @@
 		</resource-bundle>
 	</application>
 
+	<!-- INDEX -->
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>welcome</from-outcome>
+			<to-view-id>/index.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<!-- CLIENT -->
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>client_index</from-outcome>
+			<to-view-id>/modulos/client/index.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>client_edit</from-outcome>
+			<to-view-id>/modulos/client/edit.xhtml</to-view-id>
+			<redirect include-view-params="true" />
+		</navigation-case>
+	</navigation-rule>
+	<!-- PLAN -->
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>plan_index</from-outcome>
+			<to-view-id>/modulos/plan/index.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>plan_new</from-outcome>
+			<to-view-id>/modulos/plan/new.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>plan_detail</from-outcome>
+			<to-view-id>/modulos/plan/detail.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<!-- VEHICLE -->
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>vehicle_index</from-outcome>
+			<to-view-id>/modulos/vehicle/index.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>vehicle_edit</from-outcome>
+			<to-view-id>/modulos/vehicle/edit.xhtml</to-view-id>
+			<redirect include-view-params="true" />
+		</navigation-case>
+	</navigation-rule>
 </faces-config>
